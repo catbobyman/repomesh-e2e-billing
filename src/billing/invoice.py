@@ -18,10 +18,11 @@ def render_invoice(
         shipping=shipping,
         discount_rate=discount_rate,
         tax_rate=tax_rate,
+        currency=currency,
     )
     due = max(round(priced.amount - credit_note, 2), 0.0)
     return {
         "amount_due": due,
-        "currency": "USD",
+        "currency": priced.currency,
         "line_count": len(items),
     }
